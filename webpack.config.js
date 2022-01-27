@@ -4,6 +4,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
+
+console.log('is PROD: ', isProd)
+console.log('is DEV: ', isDev)
+
+const filename = (ext) => (isDev ? `bundle.${ext}` : `bundle.[fullhash].${ext}`)
+
 // расположение исходников
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -11,7 +19,7 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[hash].js',
+    filename: filename('js'),
   },
   resolve: {
     extensions: ['.js'],
@@ -20,11 +28,18 @@ module.exports = {
       '@core': path.resolve(__dirname, 'src/core'),
     },
   },
+  devtool: isDev ? 'source-map' : false,
+  devServer: {
+    port: 3000,
+    hot: isDev,
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       inject: 'body',
+      // minify: isProd,
+      // collapseWhitespace: isProd,
     }),
     // new CopyPlugin({
     //   patterns: [
@@ -35,7 +50,7 @@ module.exports = {
     //   ],
     // }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css',
+      filename: filename('css'),
     }),
   ],
   module: {
