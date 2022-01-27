@@ -12,11 +12,25 @@ console.log('is DEV: ', isDev)
 
 const filename = (ext) => (isDev ? `bundle.${ext}` : `bundle.[fullhash].${ext}`)
 
+const jsLoaders = () => {
+  const loaders = [
+    {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  ]
+  if (isDev) {
+    
+  }
+}
+
 // расположение исходников
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './index.js',
+  entry: ['@babel/polyfill', './index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: filename('js'),
@@ -62,12 +76,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
+        use: jsLoaders(),
       },
     ],
   },
