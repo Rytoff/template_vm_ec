@@ -25,6 +25,10 @@
   "homepage": "https://github.com/Rytoff/template_vm_ec#readme",
   "private": true,
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.2"
   }
