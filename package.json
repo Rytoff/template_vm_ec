@@ -1,0 +1,31 @@
+{
+  "name": "template_vm_ec",
+  "version": "1.0.0",
+  "description": "pure js template",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rytoff/template_vm_ec.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "template"
+  ],
+  "author": "Roman Rytoff <roman.rytoff@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rytoff/template_vm_ec/issues"
+  },
+  "homepage": "https://github.com/Rytoff/template_vm_ec#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
